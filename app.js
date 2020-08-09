@@ -84,12 +84,13 @@ const clearItems = () => {
     // localStorage.removeItem('list')
 }
 // delete function
-const deleteItem = () => {
-  console.log('item deleted');
+const deleteItem = e => {
+  const element = e.currentTarget.parentElement.parentElement;
+  list.removeChild(element)
 }
 
 // edit function
-const editItem = () => {
+const editItem = e => {
   console.log('item edited');
 }
 
