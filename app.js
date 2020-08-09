@@ -35,6 +35,10 @@ const addItem = e => {
         <i class="fas fa-trash"></i>
       </button>
     </div>`;
+    const deleteBtn = element.querySelector('.delete-btn');
+    const editBtn = element.querySelector('.edit-btn');
+    deleteBtn.addEventListener('click', deleteItem);
+    editBtn.addEventListener('click', editItem);
     // append child
     list.appendChild(element);
     // display alert
@@ -78,7 +82,15 @@ const clearItems = () => {
   displayAlert('empty list', 'success');
   setBackToDefault()
     // localStorage.removeItem('list')
+}
+// delete function
+const deleteItem = () => {
+  console.log('item deleted');
+}
 
+// edit function
+const editItem = () => {
+  console.log('item edited');
 }
 
 // set back to default
@@ -92,8 +104,11 @@ const setBackToDefault = () => {
 // ****** EVENT LISTENERS **********
 //submit form
 form.addEventListener('submit', addItem)
+
 //clear items
 clearBtn.addEventListener('click', clearItems);
+const deleteBtn = document.querySelector('.delete-btn');
+
 
 // ****** LOCAL STORAGE **********
 const addToLocalStorage = (id, value) => {
