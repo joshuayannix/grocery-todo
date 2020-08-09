@@ -322,6 +322,7 @@ Grocery List
   cursor: pointer;
   transition: var(--transition);
   margin-top: 1.25rem;
+  outline: none;
 }
 .clear-btn:hover {
   color: var(--clr-red-dark);
