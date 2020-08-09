@@ -41,6 +41,10 @@ const addItem = e => {
     displayAlert('item added to the list', 'success');
     //show container
     container.classList.add('show-container')
+    // add to local storage
+    addToLocalStorage(id,value);
+    // set back to default
+    setBackToDefault()
   } else if(value && editFlag){
     // if editing a current item
     console.log('edit');
@@ -58,13 +62,20 @@ const displayAlert = (text,action) => {
   // remove alert
   setTimeout(() => {
     alert.textContent = '';
-    alert.classList.remove(`alert=${action}`);
+    alert.classList.remove(`alert-${action}`);
   }, 1000)
+}
+
+// set back to default
+const setBackToDefault = () => {
+  console.log('set back to default')
 }
 
 // ****** EVENT LISTENERS **********
 form.addEventListener('submit', addItem)
 
 // ****** LOCAL STORAGE **********
-
+const addToLocalStorage = (id, value) => {
+  console.log('added to local storage')
+}
 // ****** SETUP ITEMS **********
