@@ -17,18 +17,51 @@ const addItem = e => {
   e.preventDefault()
   const value = grocery.value;
   const id = new Date().getTime().toString()
-  if(value && editFlag === false){
+  if(value && !editFlag){
     // if completely new item, and not editing
-    console.log('add');
-  } else if(value && editFlag === true){
+    const element = document.createElement('article');
+    // ad class
+    element.classList.add('grocery-item');
+    // add id
+    const attr = document.createAttribute('data-id');
+    attr.value = id;
+    element.setAttributeNode(attr);
+    element.innerHTML = `<p class="title">${value}</p>
+    <div class="btn-container">
+      <button type='button' class='edit-btn'>
+        <i class="fas fa-edit"></i>
+      </button>
+      <button type='button' class='delete-btn'>
+        <i class="fas fa-trash"></i>
+      </button>
+    </div>`;
+    // append child
+    list.appendChild(element);
+    // display alert
+    displayAlert('item added to the list', 'success');
+    //show container
+    container.classList.add('show-container')
+  } else if(value && editFlag){
     // if editing a current item
     console.log('edit');
   } else {
     // if user has not added any value
-    console.log('empty');
+    displayAlert('please enter value', 'danger')
   }
-
 }
+
+// display alert
+const displayAlert = (text,action) => {
+  alert.textContent = text;
+  alert.classList.add(`alert-${action}`);
+
+  // remove alert
+  setTimeout(() => {
+    alert.textContent = '';
+    alert.classList.remove(`alert=${action}`);
+  }, 1000)
+}
+
 // ****** EVENT LISTENERS **********
 form.addEventListener('submit', addItem)
 
