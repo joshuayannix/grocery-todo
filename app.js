@@ -140,18 +140,27 @@ const addToLocalStorage = (id, value) => {
   localStorage.setItem('list', JSON.stringify(items))
 }
 
-const removeFromLocalStorage = id => { 
+const removeFromLocalStorage = id => {
   let items = getLocalStorage();
 
   items = items.filter(item => {
-    if(item.id !== id){
+    if (item.id !== id) {
       return item
     }
   })
   localStorage.setItem('list', JSON.stringify(items))
 }
 
-const editLocalStorage = (id, value) => { }
+const editLocalStorage = (id, value) => {
+  let items = getLocalStorage();
+  items = items.map(item => {
+    if (item.id === id) {
+      item.value = value;
+    }
+    return item;
+  })
+  localStorage.setItem('list', JSON.stringify(items))
+}
 
 const getLocalStorage = () => {
   return localStorage.getItem('list')
