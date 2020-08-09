@@ -84,8 +84,8 @@ const clearItems = () => {
   }
   container.classList.remove('show-container')
   displayAlert('empty list', 'success');
-  setBackToDefault()
-  // localStorage.removeItem('list')
+  setBackToDefault();
+  localStorage.removeItem('list');
 }
 // delete function
 const deleteItem = e => {
@@ -99,7 +99,7 @@ const deleteItem = e => {
   displayAlert('item removed', 'danger')
   setBackToDefault();
   // remove from local storage
-  // removeFromLocalStorage(id);
+  removeFromLocalStorage(id);
 }
 
 // edit function
@@ -134,15 +134,35 @@ const deleteBtn = document.querySelector('.delete-btn');
 
 // ****** LOCAL STORAGE **********
 const addToLocalStorage = (id, value) => {
-  console.log('added to local storage')
+  const grocery = { id, value };
+  let items = getLocalStorage();
+  items.push(grocery)
+  localStorage.setItem('list', JSON.stringify(items))
 }
 
-const removeFromLocalStorage = id => {
+const removeFromLocalStorage = id => { 
+  let items = getLocalStorage();
 
+  items = items.filter(item => {
+    if(item.id !== id){
+      return item
+    }
+  })
+  localStorage.setItem('list', JSON.stringify(items))
 }
 
-const editLocalStorage = (id, value) => {
+const editLocalStorage = (id, value) => { }
 
+const getLocalStorage = () => {
+  return localStorage.getItem('list')
+    ? JSON.parse(localStorage.getItem('list'))
+    : [];
 }
+// localStorage API
+// setItem
+// getItem
+// removeItem
+// save as strings
+
 
 // ****** SETUP ITEMS **********
